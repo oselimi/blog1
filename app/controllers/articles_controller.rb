@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_params, only: [:show, :edit, :update, :destroy]
+
   def index
     @articles = Article.all
   end
@@ -19,15 +21,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:success] = "Article has been updated"
       redirect_to @article
@@ -38,7 +37,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     if @article.destroy
       flash[:success] = "Article has been deleted"
       redirect_to articles_path
@@ -49,5 +47,15 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body)
+  end
+
+  def resources_not_found
+    message = "The article you are looking for could not be found"
+    flash[:alert] = message
+    redirect_to root_path
+  end
+
+  def set_params
+    @article = Article.find(params[:id])
   end
 end
