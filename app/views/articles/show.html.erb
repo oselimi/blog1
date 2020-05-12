@@ -1,0 +1,10 @@
+<%= link_to 'Back', articles_path %>
+<h1>Show Page</h1>
+<ul>
+  <li><%= @article.title %></li>
+  <li><%= @article.body %></li>
+  <li><%= @article.created_at.strftime("%b %d %Y") %></li>
+</ul>
+
+<%= link_to "Edit Article", edit_article_path(@article) %>
+<%= link_to "Delete Article", article_path(@article), mehtod: :delete, data: {confirm:"Are you sure?"} %>
