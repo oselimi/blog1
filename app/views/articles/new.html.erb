@@ -1,0 +1,11 @@
+<h1>Adding New Article</h1>
+
+<%= form_with model: @article, loacl: true do |f| %>
+  <ul>
+    <li><%= f.label :title %></li>
+    <li><%= f.text_field :title %></li>
+    <li><%= f.label :body %></li>
+    <li><%= f.text_area :body %></li>
+    <li><%= f.submit "Create Article"%></li>
+  </ul>
+<% end %>
