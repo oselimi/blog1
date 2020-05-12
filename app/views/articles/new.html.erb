@@ -1,7 +1,13 @@
 <h1>Adding New Article</h1>
 
 <%= form_with model: @article, loacl: true do |f| %>
-  <ul>
+  <% if @article.errors.any? %>
+    <ul>
+      <%= @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    <ul>
+  <% end %>
     <li><%= f.label :title %></li>
     <li><%= f.text_field :title %></li>
     <li><%= f.label :body %></li>
